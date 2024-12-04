@@ -1,30 +1,114 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+const sketches = [
+  { sketchNumber: 0, sketchName: "Opener" },
+  { sketchNumber: 1, sketchName: "Rough Jazz" },
+  { sketchNumber: 2, sketchName: "Soviet Phone" },
+  { sketchNumber: 3, sketchName: "Santa's Lost Bag" },
+  { sketchNumber: 4, sketchName: "Wise Men Debate" },
+  { sketchNumber: 5, sketchName: "Elf Dating Show" },
+  { sketchNumber: 6, sketchName: "Christmas Plus Ad" },
+  { sketchNumber: 7, sketchName: "Santa's Lice Revenge" },
+  { sketchNumber: 8, sketchName: "Buddha's Pizza Wisdom" },
+  { sketchNumber: 9, sketchName: "Inception Dreidel" },
+  { sketchNumber: 10, sketchName: "Candy Salad Chaos" },
+  { sketchNumber: 11, sketchName: "Grinch vs. Jesus" },
+  { sketchNumber: 12, sketchName: "Extreme Outie" },
+  { sketchNumber: 13, sketchName: "Reverse Rob's Pit Stop" },
+  { sketchNumber: 14, sketchName: "Peoples Interruption Troupe" },
+  { sketchNumber: 15, sketchName: "Imagining Guy 1" },
+  { sketchNumber: 16, sketchName: "Santa Cage Match Promo" },
+  { sketchNumber: 17, sketchName: "Battleman in New Jersey" },
+  { sketchNumber: 18, sketchName: "Lizard Bag" },
+  { sketchNumber: 19, sketchName: "Christmas Multiverse" },
+  { sketchNumber: 20, sketchName: "Fish React To" },
+  { sketchNumber: 21, sketchName: "Waffletron vs. Pancraken" },
+  { sketchNumber: 22, sketchName: "100 Geckos" },
+  { sketchNumber: 23, sketchName: "Rude Waiter" },
+  { sketchNumber: 24, sketchName: "Butt Appointment" },
+  { sketchNumber: 25, sketchName: "Mom Learns to Count" },
+  { sketchNumber: 26, sketchName: "Thanksgiving Fake Fan" },
+  { sketchNumber: 27, sketchName: "Zoom Church Chaos" },
+  { sketchNumber: 28, sketchName: "Claudius" },
+  { sketchNumber: 29, sketchName: "Civilization Skeptic" },
+  { sketchNumber: 30, sketchName: "Pilot’s Binky Crisis" },
+  { sketchNumber: 31, sketchName: "Eat Something Say Something" },
+  { sketchNumber: 32, sketchName: "Bathroom Amusement Park" },
+  { sketchNumber: 33, sketchName: "Christmas Me" },
+  { sketchNumber: 34, sketchName: "100 Hours in One Sketch" },
+  { sketchNumber: 35, sketchName: "Grinch Macys" },
+  { sketchNumber: 36, sketchName: "Christmas Plus Fire Cellar" },
+  { sketchNumber: 37, sketchName: "Birthtina 1" },
+  { sketchNumber: 38, sketchName: "Name Baby Santa Claus" },
+  { sketchNumber: 39, sketchName: "O Holy Late Night" },
+  { sketchNumber: 40, sketchName: "Imagining Guy 2" },
+  { sketchNumber: 41, sketchName: "Pitbull Parody Protest" },
+  { sketchNumber: 42, sketchName: "Boy Drone Escapes" },
+  { sketchNumber: 43, sketchName: "Feral Outdoor Kid" },
+  { sketchNumber: 44, sketchName: "DreamWorks Hook" },
+  { sketchNumber: 45, sketchName: "Doctor Shart's Fall" },
+  { sketchNumber: 46, sketchName: "Birthtina Returns" },
+  { sketchNumber: 47, sketchName: "Cryptid Girlfriend" },
+  { sketchNumber: 48, sketchName: "Overly Local News" },
+  { sketchNumber: 49, sketchName: "Jump Rope Fail" },
+  { sketchNumber: 50, sketchName: "Starbucks Grinch" },
+  { sketchNumber: 50.5, sketchName: "Halftime Show" },
+  { sketchNumber: 51, sketchName: "Hanukkah Critter Dance" },
+  { sketchNumber: 52, sketchName: "Library of Alexandria" },
+  { sketchNumber: 53, sketchName: "Imagining Guy 3" },
+  { sketchNumber: 54, sketchName: "Woke Council Audit" },
+  { sketchNumber: 55, sketchName: "Prometheus" },
+  { sketchNumber: 56, sketchName: "Christmas Bag Disappointment" },
+  { sketchNumber: 57, sketchName: "River Cruise Standoff" },
+  { sketchNumber: 58, sketchName: "What a Cunt You Are" },
+  { sketchNumber: 59, sketchName: "Trebek’s Eternal Wandering" },
+  { sketchNumber: 60, sketchName: "Snickers Booth" },
+  { sketchNumber: 61, sketchName: "Polar Express Boston Edition" },
+  { sketchNumber: 62, sketchName: "Harolds Anal Lubricant" },
+  { sketchNumber: 63, sketchName: "Catholic Vampire" },
+  { sketchNumber: 64, sketchName: "Baby Elf Recruitment" },
+  { sketchNumber: 65, sketchName: "Reporter With Hammer" },
+  { sketchNumber: 66, sketchName: "Macklemore Sketch Protest" },
+  { sketchNumber: 67, sketchName: "Chip Dip Concrete" },
+  { sketchNumber: 68, sketchName: "Shark Boy Saves Ocean" },
+  { sketchNumber: 69, sketchName: "RENE L’ESTHETIQUE" },
+  { sketchNumber: 70, sketchName: "Slug Son Dies" },
+  { sketchNumber: 71, sketchName: "Ref Hoagie Obsession" },
+  { sketchNumber: 72, sketchName: "Lizard Funeral Intrusion" },
+  { sketchNumber: 73, sketchName: "New York Subway Plea" },
+  { sketchNumber: 74, sketchName: "Lizard Revenge" },
+  { sketchNumber: 75, sketchName: "Chemical Eyes" },
+  { sketchNumber: 76, sketchName: "Brittney Spears Radio" },
+  { sketchNumber: 77, sketchName: "Snape Meets Criss Angel" },
+  { sketchNumber: 78, sketchName: "Grandma's Rap Grace" },
+  { sketchNumber: 79, sketchName: "Aussie Christmas" },
+  { sketchNumber: 80, sketchName: "Cowboy Mama Kiss" },
+  { sketchNumber: 81, sketchName: "Grinch In Memoriam" },
+  { sketchNumber: 82, sketchName: "Astronaut Pool Party" },
+  { sketchNumber: 83, sketchName: "Snowman Funeral" },
+  { sketchNumber: 84, sketchName: "Christmas Truck Ad" },
+  { sketchNumber: 85, sketchName: "Christmas Plus Date Game Show" },
+  { sketchNumber: 86, sketchName: "Save Poop Island" },
+  { sketchNumber: 87, sketchName: "Trump Gangnam Style" },
+  { sketchNumber: 88, sketchName: "Santa's Bomb Plan" },
+  { sketchNumber: 89, sketchName: "Santa on Trial" },
+  { sketchNumber: 90, sketchName: "Talking Tooth Plant" },
+  { sketchNumber: 91, sketchName: "McFish Wraps" },
+  { sketchNumber: 92, sketchName: "Spider Chateau" },
+  { sketchNumber: 93, sketchName: "Molar Express" },
+  { sketchNumber: 94, sketchName: "News has gone yolk" },
+  { sketchNumber: 95, sketchName: "Mudboy" },
+  { sketchNumber: 96, sketchName: "Glugbot" },
+  { sketchNumber: 97, sketchName: "Few more minutes before new years" },
+  { sketchNumber: 98, sketchName: "Prince Street Pizza" },
+  { sketchNumber: 99, sketchName: "Sharkboy" },
+  { sketchNumber: 100, sketchName: "The Grand Finale" },
+];
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <RouterView v-slot="{ Component }">
+    <component :is="Component" :sketches="sketches" />
+  </RouterView>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<style scoped></style>
