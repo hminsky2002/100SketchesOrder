@@ -1,10 +1,6 @@
 <template>
   <div class="home-view">
-    <div class="image-container">
-      <img src="/grinch.png" alt="Tracker Logo" class="top-image" />
-    </div>
     <h3>100 Sketches Per Hour Tracker</h3>
-
     <div class="sketches-container">
       <div class="dimmed-sketches previous">
         <div>..............</div>
@@ -77,21 +73,21 @@ watch(
   () => route.params.currentSketchNumber,
   (newSketchNumber) => {
     currentSketchIndex.value = Number(newSketchNumber) || 0;
-  },
+  }
 );
 
 const currentSketch = computed(() => props.sketches[currentSketchIndex.value]);
 const previousSketches = computed(() =>
   props.sketches.slice(
     Math.max(0, currentSketchIndex.value - 3),
-    currentSketchIndex.value,
-  ),
+    currentSketchIndex.value
+  )
 );
 const nextSketches = computed(() =>
   props.sketches.slice(
     currentSketchIndex.value + 1,
-    currentSketchIndex.value + 4,
-  ),
+    currentSketchIndex.value + 4
+  )
 );
 
 const goToPreviousSketch = () => {
@@ -112,40 +108,28 @@ const goToFullList = () => {
 </script>
 
 <style scoped>
-.home-view {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  text-align: center;
-}
-
 .sketches-container {
   display: flex;
-  height: 500px;
   flex-direction: column;
-  align-items: center;
   gap: 1rem;
+  height: 400px;
+  overflow: hidden;
+}
+
+.navigation-buttons {
+  background: white;
 }
 
 .dimmed-sketch {
   color: gray;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .current-sketch {
   font-weight: bold;
   color: red;
-  height: 200px;
   align-content: center;
-  font-size: 2rem;
-}
-
-.navigation-buttons {
-  display: flex;
-  gap: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 #next-button {
@@ -154,20 +138,5 @@ const goToFullList = () => {
 
 #previous-button {
   background: red;
-}
-.image-container {
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.top-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 </style>

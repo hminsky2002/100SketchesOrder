@@ -7,7 +7,7 @@ const routes = [
     path: "/:currentSketchNumber?",
     name: "Home",
     component: HomeView,
-    props: true, // Pass route params as props
+    props: true, 
   },
   {
     path: "/fullList",
